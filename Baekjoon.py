@@ -1,29 +1,19 @@
-import sys
+def josephus_sequence(N, K):
+    circle = list(range(1, N + 1))  # 1부터 N까지의 숫자를 원형으로 저장
+    result = []
 
-class Circular:
-    def __init__(self, n):
-        self.circular = list(range(1, n + 1))
-        
-    def peek(self, ind):
-        result = []
-        index = ind - 1  # 0-based index
-        
-        while self.circular:
-            index = index % len(self.circular)
-            result.append(self.circular.pop(index))
-            
-        return result
+    index = 0
+    while circle:
+        index = (index + K - 1) % len(circle)  # K번째 사람을 찾기 위한 인덱스 계산
+        result.append(circle.pop(index))       # 해당 사람을 제거하고 결과에 추가
 
-def main():
-    t = list(map(int, sys.stdin.readline().strip().split()))
-    n, k = t[0], t[1]
-    
-    my_ls = Circular(n)
-    result = my_ls.peek(k)
-    
+    return result
 
-    result_str = '<' + ', '.join(map(str, result)) + '>'
-    sys.stdout.write(result_str + "\n")
+# 입력 받기
+N, K = map(int, input().split())
 
-if __name__ == "__main__":
-    main()
+result = josephus_sequence(N, K)
+
+# 결과를 원하는 형식으로 변환하여 출력
+result_str = '<' + ', '.join(map(str, result)) + '>'
+print(result_str)  # sys.stdout.write 대신 print 사용
