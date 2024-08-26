@@ -1,19 +1,47 @@
-def josephus_sequence(N, K):
-    circle = list(range(1, N + 1))  # 1부터 N까지의 숫자를 원형으로 저장
-    result = []
+import sys
 
-    index = 0
-    while circle:
-        index = (index + K - 1) % len(circle)  # K번째 사람을 찾기 위한 인덱스 계산
-        result.append(circle.pop(index))       # 해당 사람을 제거하고 결과에 추가
+class Stack:
+    def __init__(self):
+        self.stack = []
 
-    return result
+    def push(self, item):
+        self.stack.append(item)
 
-# 입력 받기
-N, K = map(int, input().split())
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        else:
+            return -1
 
-result = josephus_sequence(N, K)
+    def is_empty(self):
+        return len(self.stack) == 0
 
-# 결과를 원하는 형식으로 변환하여 출력
-result_str = '<' + ', '.join(map(str, result)) + '>'
-print(result_str)  # sys.stdout.write 대신 print 사용
+while True:
+    line = sys.stdin.readline().strip()
+    if line[0] == ".":
+        break
+    
+    big = Stack()
+    small = Stack()
+
+    balanced = True  # 균형 상태를 추적하기 위한 변수
+
+    for i in line:
+        if i == "(":
+            small.push("(")
+        elif i == "[":
+            big.push("[")
+        elif i == ")":
+            if small.pop() == -1:
+                balanced = False
+                break
+        elif i == "]":
+            if big.pop() == -1:
+                balanced = False
+                break
+    
+    # 모든 괄호가 짝을 이루고 있는지 확인
+    if balanced and small.is_empty() and big.is_empty():
+        print("yes")
+    else:
+        print("no")
