@@ -22,3 +22,16 @@ class Stack:
 
     def size(self):
         return len(self.stack)
+    
+
+def vps(brackets):
+    st = []
+    for char in brackets:
+        if char == "(":
+            st.append("(")
+        elif char == ")":
+            if st:
+                st.pop()
+            else:
+                return "NO"
+    return "YES" if not st else "NO"

@@ -1,23 +1,29 @@
 import sys
 
-def vps(brackets):
-    st = []
-    for char in brackets:
-        if char == "(":
-            st.append("(")
-        elif char == ")":
-            if st:
-                st.pop()
-            else:
-                return "NO"
-    return "YES" if not st else "NO"
+class Circular:
+    def __init__(self, n):
+        self.circular = list(range(1, n + 1))
+        
+    def peek(self, ind):
+        result = []
+        index = ind - 1  # 0-based index
+        
+        while self.circular:
+            index = index % len(self.circular)
+            result.append(self.circular.pop(index))
+            
+        return result
 
-t = int(sys.stdin.readline().strip())
+def main():
+    t = list(map(int, sys.stdin.readline().strip().split()))
+    n, k = t[0], t[1]
+    
+    my_ls = Circular(n)
+    result = my_ls.peek(k)
+    
 
-output = []
-for _ in range(t):
-    line = sys.stdin.readline().strip()
-    output.append(vps(line))
+    result_str = '<' + ', '.join(map(str, result)) + '>'
+    sys.stdout.write(result_str + "\n")
 
-# 결과 출력
-sys.stdout.write("\n".join(output) + "\n")
+if __name__ == "__main__":
+    main()
