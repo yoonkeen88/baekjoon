@@ -1,3 +1,5 @@
+import sys
+
 class Stack:
     def __init__(self):
         self.stack = []
@@ -24,22 +26,24 @@ class Stack:
         return len(self.stack)
 
 # 명령어의 수 입력
-N = int(input())
+k = int(sys.stdin.readline())
 
 # 스택 객체 생성
 my_stack = Stack()
 
-for _ in range(N):
-    line = sys.stdin.readline.rstrip()
+output = []
+
+for _ in range(k):
+    line = sys.stdin.readline().split()
     command = int(line[0])
     
-    if command == 1:
-        my_stack.push(int(line[1]))
-    elif command == 2:
-        print(my_stack.pop())
-    elif command == 3:
-        print(my_stack.size())
-    elif command == 4:
-        print(my_stack.is_empty())
-    elif command == 5:
-        print(my_stack.peek())
+    if command != 0:
+        my_stack.push(int(command))
+    else :
+        my_stack.pop()
+
+for i in range(k):
+    sum += my_stack[i]
+
+# 결과 출력
+sys.stdout.write(sum)
