@@ -125,3 +125,57 @@ class Maqueue:
             return self.maqueue[-1]
         else:
             return -1
+
+
+
+import sys
+from collections import deque
+
+class Deck:
+    def __init__(self):
+        self.deck = deque()
+
+    def f_enqueue(self, n):
+        """?± ?ë£Œêµ¬ì¡? ë§? ì²˜ìŒ?— ? •?ˆ˜ë¥? ?…? ¥?•˜?Š” ?•¨?ˆ˜"""
+        self.deck.appendleft(n)
+
+    def l_enqueue(self, n):
+        """?± ?ë£Œêµ¬ì¡? ë§? ë§ˆì??ë§‰ì— ? •?ˆ˜ë¥? ?…? ¥?•˜?Š” ?•¨?ˆ˜"""
+        self.deck.append(n)
+
+    def f_dequeue(self):
+        """?± ?ë£Œêµ¬ì¡? ë§? ì²˜ìŒ?— ? •?ˆ˜ê°? ?ˆ?‹¤ë©? ë°˜í™˜?•˜ê³? ?‚­? œ?•˜?Š” ?•¨?ˆ˜"""
+        if self.deck:
+            return self.deck.popleft()
+        else:
+            return -1
+
+    def l_dequeue(self):
+        """?± ?ë£Œêµ¬ì¡? ë§? ë§ˆì??ë§‰ì— ? •?ˆ˜ê°? ?ˆ?‹¤ë©? ë°˜í™˜?•˜ê³? ?‚­? œ?•˜?Š” ?•¨?ˆ˜"""
+        if self.deck:
+            return self.deck.pop()
+        else:
+            return -1
+
+    def front(self):
+        """?± ?ë£Œêµ¬ì¡? ? •?ˆ˜ê°? ?ˆ?‹¤ë©? ë§? ì²˜ìŒ ? •?ˆ˜ë¥? ë°˜í™˜?•˜?Š” ?•¨?ˆ˜"""
+        if self.deck:
+            return self.deck[0]
+        else:
+            return -1
+
+    def back(self):
+        """?± ?ë£Œêµ¬ì¡? ? •?ˆ˜ê°? ?ˆ?‹¤ë©? ë§? ë§ˆì??ë§? ? •?ˆ˜ë¥? ë°˜í™˜?•˜?Š” ?•¨?ˆ˜"""
+        if self.deck:
+            return self.deck[-1]
+        else:
+            return -1
+
+    def is_empty(self):
+        """?± ?ë£Œêµ¬ì¡? ? •?ˆ˜ê°? ?ˆ?Š”ì§? ?—†?Š”ì§? ?™•?¸.
+        ?ˆ?‹¤ë©? 1?„ ?—†?‹¤ë©? 0?„ ë°˜í™˜"""
+        return 1 if not self.deck else 0
+
+    def size(self):
+        """?± ?ë£Œêµ¬ì¡? ?‚¬?´ì¦ˆë?? ? •?ˆ˜ë¡? ë°˜í™˜"""
+        return len(self.deck)
