@@ -1,21 +1,25 @@
 import sys
-def main():
-    input = sys.stdin.read
-    data = input().strip().split()
-    N = int(data[0])
-    
-    card = deque(data[1:])
-    card_dequeue = []
-    ind = 0
-    while True:
-        if not len(card):
-            break
-        card_dequeue.append(card.pop([ind]))
-        ind += card_dequeue[-1] 
 
-    sys.stdout.write(" ".join(card_dequeue) + " ")
+def main():
+    N = int(input())  
+    cards = list(map(int, sys.stdin.read().strip().split()))  
+    ind = 0
+    result = [] 
+
+    while cards:
+        result.append(ind+1) 
+        current_value = cards.pop(ind) 
+        if cards: 
+            if current_value + ind < 0:
+                ind = (len(cards) + (current_value+ind +1))%len(cards)
+
+            else:
+                ind = (ind + current_value) % len(cards) 
+
+    sys.stdout.write(" ".join(map(str, result)) + "\n")  
 
 if __name__ == "__main__":
     main()
+
 
 
