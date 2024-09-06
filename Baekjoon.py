@@ -1,22 +1,23 @@
-def mainn():
-    N = int(input())  # 카드의 개수 입력 받기
-    cards = list(map(int, input().split()))  # 카드 값 입력 받기
-    balloons = list(range(N))  # 카드 위치를 나타내는 리스트 생성
-    ind = 0  # 현재 인덱스
+def fibo_recursion(number: int) -> int:
+    """
+    fibonacci function by recursion.
+    :param number: integer number
+    :return: integer number
+    """
+    if number == 0:
+        return 0
+    elif number == 1:
+        return 1
+    else:
+        return fibo_recursion(number - 1) + fibo_recursion(number - 2)
 
-    result = []
 
-    while cards:
-        result.append(balloons.pop(ind)+1)  # 해당 카드의 원래 위치 기록
-        mov = cards.pop(ind)
-        
-        if cards:  
-            ind = (ind + mov) % len(balloons)
-            print(ind)  
-       
-    print(" ".join(map(str, result)))  # 결과 출력
+
+
 def main():
-    print(-1%3)
+    N = int(input())  # 카드의 개수 입력 받기
+    print(fibo_recursion(N))
+
 
 if __name__ == "__main__":
     main()
