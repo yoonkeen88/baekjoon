@@ -1,23 +1,17 @@
-def fibo_recursion(number: int) -> int:
-    """
-    fibonacci function by recursion.
-    :param number: integer number
-    :return: integer number
-    """
-    if number == 0:
-        return 0
-    elif number == 1:
-        return 1
-    else:
-        return fibo_recursion(number - 1) + fibo_recursion(number - 2)
-
-
-
+import sys
 
 def main():
-    N = int(input())  # 카드의 개수 입력 받기
-    print(fibo_recursion(N))
+    data = []
+    n = int(input())
+    for i in range(n):
+        a = input()
+        if a not in data:
+            data.append(a)
 
+    data.sort( key=lambda x : (len(x), x) )       # 데이터를 정렬합니다.
+    
+    for i in data:
+        print(i)
 
 if __name__ == "__main__":
     main()
