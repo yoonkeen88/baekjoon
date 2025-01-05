@@ -1,19 +1,16 @@
 def main():
-    n = int(input())
-    facto = 1
-    for i in range(1, n+1):
-        facto *= i
-  
-    l = len(str(facto))
-    cnt =0 
-    for x in range(l, 0, -1):
-        if str(facto)[x-1] =='0' : 
-           cnt +=1
-        else:
+    a,b = map(int, input().split())
+
+    if a < b:
+        a,b = b,a
+    mx = 1
+    for i in range(b,0,-1):
+        if a%i ==0 and b%i == 0:
+            mx =i
             break
-    print(cnt) 
-
-
+        else: 
+            continue
+    print(f"{mx}\n{a*b//mx}")
 
 if __name__ == "__main__":
     main()
