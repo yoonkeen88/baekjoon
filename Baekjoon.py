@@ -1,19 +1,14 @@
 def main():
     n = int(input())
-    li = input().split()
-    t, p = map(int,input().split())
+    cnt = 0
+    defal = 666 # 666 이 들어가는 N 번째로 큰수를 찾아야함
     
-    t_or = 0
-    for i in range(len(li)): 
-        num = int(li[i])
-        if num ==0:
-            continue
-        else:
-            if num% t == 0:
-                t_or += num//t
-            else:
-                t_or += num//t + 1
-        
-    print(f"{t_or}\n{n//p} {n%p}")
+    while cnt < n:
+        if "666" in str(defal):
+            cnt += 1
+        defal += 1
+    print(defal-1)
+
+
 if __name__ == "__main__":
     main()
