@@ -1,23 +1,13 @@
 import sys
 
 def main():
-    n, k = map(int, sys.stdin.readline().strip().split())
-    se = set()
-    full = set(map(str, range(1, 21)))  # 미리 전체 집합 생성
-    result = []
-    for _ in range(n):
-        name = sys.stdin.readline().strip()
-        se.add(name)
-
-    for _ in range(k):
-        name = sys.stdin.readline().strip()
-        if name in se:
-            result.append(name)
-    result.sort()
-    print(len(result))
-    print("\n".join(result))
-
-
-
+    n = int(sys.stdin.readline().strip())
+    li = list(map(int, sys.stdin.readline().split()))
+    li.sort()
+    time = 0
+    for i in range(n):
+        for j in range(i+1):
+            time += li[j]
+    print(time)
 if __name__ == "__main__":
     main()
