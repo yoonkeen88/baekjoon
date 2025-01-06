@@ -1,19 +1,29 @@
-def sieve_of_eratosthenes(m, n):
-    is_prime = [True] * (n + 1)
-    is_prime[0] = is_prime[1] = False 
-
-    for i in range(2, int(n**0.5) + 1):
-        if is_prime[i]:
-            for j in range(i * i, n + 1, i):
-                is_prime[j] = False
-    primes = [i for i in range(m, n + 1) if is_prime[i]]
-    return primes
+import sys
 
 def main():
-    m,n = map(int, input().split())
-    prime =  sieve_of_eratosthenes(m,n)
-    for i in prime:
-        print(i)    
+    n = int(sys.stdin.readline().strip())
+    se = set()
+    full = set(map(str, range(1, 21)))  # 미리 전체 집합 생성
+
+    for _ in range(n):
+        command = sys.stdin.readline().strip().split()
+        if command[0] == "all":
+            se = full.copy()
+        elif command[0] == "empty":
+            se = set()
+        else:
+            cmd, num = command[0], command[1]
+            if cmd == "add":
+                se.add(num)
+            elif cmd == "remove":
+                se.discard(num)
+            elif cmd == "check":
+                print(1 if num in se else 0)
+            elif cmd == "toggle":
+                if num in se:
+                    se.remove(num)
+                else:
+                    se.add(num)
 
 if __name__ == "__main__":
     main()
