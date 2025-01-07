@@ -1,27 +1,21 @@
 import sys
 
 def main():
-    answer = []
-    while True:
-        try:
-            a = list(map(int, input().split()))
-        except ValueError:
-            print("숫자 세 개를 입력하세요.")
-            continue
-        if a == [0, 0, 0]: 
-            break
-        
-        if len(a) != 3:  
-            print("정확히 세 개의 숫자를 입력하세요.")
-            continue
-        
-        a.sort()
-        if a[0]**2 + a[1]**2 == a[2]**2:
-            answer.append("right")
-        else:
-            answer.append("wrong")
-
-    sys.stdout.write("\n".join(answer) + "\n")
+    melody = input().split()
+    a = True
+    d = True
+    for i in range(len(melody)-1):
+        if int(melody[i]) != int(melody[i+1]) + 1 :
+            d = False
+        elif int(melody[i]) != int(melody[i+1]) -1:
+            a = False
+            
+    if a:
+        print("ascending")
+    elif d:
+        print("descending")
+    else:
+        print("mixed")
 
 if __name__ == "__main__":
     main()
