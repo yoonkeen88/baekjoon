@@ -22,7 +22,7 @@ class Stack:
 
     def size(self):
         return len(self.stack)
-class stack():
+class Stack_2():
     def __init__(self):
         self.stack = []
     
@@ -160,7 +160,28 @@ class Maqueue:
             return self.maqueue[-1]
         else:
             return -1
-
+### 하나 더 짠 Queue
+class Queue_ma():
+    def __init__(self):
+        self.queue = []
+    
+    def push(self, value):
+        self.queue.append(value)
+        
+    def pop(self):
+        if self.queue:
+            return self.queue.pop(0)
+        else:
+            return -1
+    def size(self):
+        return len(self.queue)
+    def empty(self):
+        return 0 if self.queue else 1
+    def front(self):
+        return self.queue[0] if self.queue else -1
+    def back(self):
+        return self.queue[-1] if self.queue else -1
+    
 
 ### Deck Class 구현현
 from collections import deque
