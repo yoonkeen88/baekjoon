@@ -1,47 +1,48 @@
 import sys
 
-class stack():
+
+class Queue_ma():
     def __init__(self):
-        self.stack = []
+        self.queue = []
     
     def push(self, value):
-        self.stack.append(value)
+        self.queue.append(value)
         
     def pop(self):
-        if self.stack:
-            return self.stack.pop()
+        if self.queue:
+            return self.queue.pop(0)
         else:
             return -1
     def size(self):
-        return len(self.stack)
+        return len(self.queue)
     def empty(self):
-        return 0 if self.stack else 1
+        return 0 if self.queue else 1
+    def front(self):
+        return self.queue[0] if self.queue else -1
+    def back(self):
+        return self.queue[-1] if self.queue else -1
     
-    def top(self):
-        return self.stack[-1] if self.stack else -1
-   
 
 
 def main():
     n= int(sys.stdin.readline().strip())
     result = []
-    st = stack()
+    st = Queue_ma()
     for _ in range(n):
         cmd = sys.stdin.readline().strip().split()
 
-        if "push" in cmd:
-            st.push(cmd[-1])
-        elif "pop" in cmd:
+        if cmd[0] == "push":
+            st.push(cmd[1])  # cmd[1]은 항상 존재
+        elif cmd[0] == "pop":
             result.append(st.pop())
-
-        elif "size" in cmd:
+        elif cmd[0] == "size":
             result.append(st.size())
-
-        elif "empty" in cmd:
+        elif cmd[0] == "empty":
             result.append(st.empty())
-
-        elif "top" in cmd:
-            result.append(st.top())
+        elif cmd[0] == "front":
+            result.append(st.front())
+        elif cmd[0] == "back":
+            result.append(st.back())
         
 
     sys.stdout.write("\n".join(map(str, result)) + "\n")
