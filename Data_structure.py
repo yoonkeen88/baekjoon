@@ -22,9 +22,33 @@ class Stack:
 
     def size(self):
         return len(self.stack)
+class stack():
+    def __init__(self):
+        self.stack = []
     
+    def push(self, value):
+        self.stack.append(value)
+        
+    def pop(self):
+        if self.stack:
+            return self.stack.pop()
+        else:
+            return -1
+    def size(self):
+        return len(self.stack)
+    def empty(self):
+        return 0 if self.stack else 1
+    
+    def top(self):
+        return self.stack[-1] if self.stack else -1
+   
 
 def vps(brackets):
+    """
+    괄호 문자열이 올바른지 판단하는 함수
+    :param brackets: 괄호 문자열
+    :return: 올바르면 "YES", 아니면 "NO"
+    """
     st = []
     for char in brackets:
         if char == "(":
@@ -37,6 +61,11 @@ def vps(brackets):
     return "YES" if not st else "NO"
 
 def que_stack(n, line):
+    """
+    주어진 순서대로 뽑을 수 있는지 판단하는 함수
+    :param n: n까지의 수
+    :param line: 주어진 수열
+    """
     other = []
     
     for current in range(1, n + 1):
@@ -57,6 +86,9 @@ from collections import deque
 import sys
 
 class Ma_queue:
+    """
+    큐를 구현한 클래스
+    """
     def __init__(self):
         self.ma_queue = deque()
 
@@ -89,6 +121,9 @@ class Ma_queue:
         
 # 밑에는 내가 짠 것.
 class Maqueue:
+    """
+    큐를 구현한 클래스
+    """
     def __init__(self):
         # 큐를 빈 리스트로 초기화
         self.maqueue = []
@@ -127,55 +162,50 @@ class Maqueue:
             return -1
 
 
-
-import sys
+### Deck Class 구현현
 from collections import deque
-
 class Deck:
+    """
+    Deck을 구현한 클래스
+    속도 향상을 위해 deque를 사용
+    """
     def __init__(self):
         self.deck = deque()
 
-    def f_enqueue(self, n):
-        """?뜳 ?옄猷뚭뎄議? 留? 泥섏쓬?뿉 ?젙?닔瑜? ?엯?젰?븯?뒗 ?븿?닔"""
+    def f_enqueue(self, n):     
         self.deck.appendleft(n)
 
     def l_enqueue(self, n):
-        """?뜳 ?옄猷뚭뎄議? 留? 留덉??留됱뿉 ?젙?닔瑜? ?엯?젰?븯?뒗 ?븿?닔"""
+        
         self.deck.append(n)
 
     def f_dequeue(self):
-        """?뜳 ?옄猷뚭뎄議? 留? 泥섏쓬?뿉 ?젙?닔媛? ?엳?떎硫? 諛섑솚?븯怨? ?궘?젣?븯?뒗 ?븿?닔"""
         if self.deck:
             return self.deck.popleft()
         else:
             return -1
 
     def l_dequeue(self):
-        """?뜳 ?옄猷뚭뎄議? 留? 留덉??留됱뿉 ?젙?닔媛? ?엳?떎硫? 諛섑솚?븯怨? ?궘?젣?븯?뒗 ?븿?닔"""
         if self.deck:
             return self.deck.pop()
         else:
             return -1
 
     def front(self):
-        """?뜳 ?옄猷뚭뎄議? ?젙?닔媛? ?엳?떎硫? 留? 泥섏쓬 ?젙?닔瑜? 諛섑솚?븯?뒗 ?븿?닔"""
         if self.deck:
             return self.deck[0]
         else:
             return -1
 
     def back(self):
-        """?뜳 ?옄猷뚭뎄議? ?젙?닔媛? ?엳?떎硫? 留? 留덉??留? ?젙?닔瑜? 諛섑솚?븯?뒗 ?븿?닔"""
         if self.deck:
             return self.deck[-1]
         else:
             return -1
 
     def is_empty(self):
-        """?뜳 ?옄猷뚭뎄議? ?젙?닔媛? ?엳?뒗吏? ?뾾?뒗吏? ?솗?씤.
-        ?엳?떎硫? 1?쓣 ?뾾?떎硫? 0?쓣 諛섑솚"""
+        
         return 1 if not self.deck else 0
 
     def size(self):
-        """?뜳 ?옄猷뚭뎄議? ?궗?씠利덈?? ?젙?닔濡? 諛섑솚"""
         return len(self.deck)
