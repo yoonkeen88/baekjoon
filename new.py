@@ -1,18 +1,23 @@
 import sys
-def main():
-    # 입력
-    n, m = map(int, input().strip().split())
-    arr = list(map(int, sys.stdin.readline().strip().split()))
-  
-    prefix_sum = [0] * (n+1)
-    for i in range(1, n+1):
-        prefix_sum[i] = prefix_sum[i - 1] + arr[i - 1]
-    
-    results = []
-    for _ in range(m):
-        i, j = map(int, input().strip().split())
-        results.append(prefix_sum[j] - prefix_sum[i - 1])
+from collections import defaultdict, deque
 
-    sys.stdout.write("\n".join(map(str, results)) + "\n")
+def bfs(graph,visit):
+    """
+    
+    """
+def main():
+    
+    t = int(sys.stdin.readline().strip())
+    result = []
+    for _ in range(t):
+        graph = defaultdict(list)
+        m,n,k = map(int,sys.stdin.readline().strip().split())
+        for _ in range(k):
+            i,j = map(int,sys.stdin.readline().strip().split())
+            graph[i].append(j)
+            graph[j].append(i)
+        
+        
+
 if __name__ == "__main__":
     main()
