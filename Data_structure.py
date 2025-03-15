@@ -230,3 +230,27 @@ class Deck:
 
     def size(self):
         return len(self.deck)
+    
+
+def least_bfs(graph, start, target, n):
+    """
+    BFS로 시작 노드에서 목표 노드까지의 최단 거리를 계산
+    """
+    visited = [False] * (n + 1)
+    distance = [-1] * (n + 1)
+    queue = deque([start])
+
+    visited[start] = True # 방문한 노드 표시 중복되는 노드 방문은 하지 않음
+    distance[start] = 0 # 시작점 거리는 0
+
+    while queue:
+        node = queue.popleft() # queue 자료 구조니까 제일 먼 있는걸 제외
+        for neighbor in graph[node]:
+            if not visited[neighbor]:
+                queue.append(neighbor)
+                visited[neighbor] = True
+                distance[neighbor] = distance[node] + 1
+                if neighbor == target:
+                    return distance[target]
+
+    return -1  # 목표 노드에 도달할 수 없는 경우
