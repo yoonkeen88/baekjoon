@@ -1,0 +1,23 @@
+import sys
+import heapq
+
+n = int(sys.stdin.readline().rstrip())
+myheap = []
+
+for i in range(n):
+    x = int(sys.stdin.readline().rstrip())
+    if x == 0:
+        if not myheap:
+            print(0)
+        else:
+            # 꺼낼 때도 (절댓값, 원래값) 묶음이 통째로 나와.
+            # 예: result = (1, -1)
+            # 우리는 여기서 '원래 값'만 필요하니까 인덱싱을 해야 해.
+            result = heapq.heappop(myheap)
+            print(result[1]) # 튜플의 1번 인덱스(원래 값) 출력
+            
+    else:
+        # 여기가 핵심! 
+        # 힙에 넣을 때 (정렬기준1, 정렬기준2) 형태로 묶어서 넣어줘.
+        # 기준1: 절댓값(abs(x)), 기준2: 그냥 x
+        heapq.heappush(myheap, (abs(x), x))
